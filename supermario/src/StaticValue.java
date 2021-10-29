@@ -1,7 +1,6 @@
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiFunction;
 
 public class StaticValue {
     // backGround
