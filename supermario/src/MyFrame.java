@@ -48,11 +48,12 @@ public class MyFrame extends JFrame implements KeyListener {
 
         }
         // 空参构造初始化游戏，第一个因此背景设置为第一个场景
-        curBg = allBg.get(2);
+        curBg = allBg.get(0);
 
         //绘制图像
         repaint();
-    }
+
+    }// end of the constructor
 
     @Override
     public void paint(Graphics g) {
@@ -65,15 +66,17 @@ public class MyFrame extends JFrame implements KeyListener {
         // 绘制背景
         graphics.drawImage(curBg.getBgImg(), 0,0,this);
 
+        // 绘制障碍物
+        for(Obstacle ob: curBg.getObstaclesList()){
+            graphics.drawImage(ob.getShow(), ob.getX(), ob.getY(), this);
+
+        }
+
         // 将图像绘制到背景中
         g.drawImage(offScreenImage, 0, 0,this);
-    }
 
-    public static void main(String[] args) {
+    }// end of the paint method
 
-        MyFrame myFrame = new MyFrame();
-
-    }
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -86,6 +89,12 @@ public class MyFrame extends JFrame implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+
+    }
+
+    public static void main(String[] args) {
+
+        MyFrame myFrame = new MyFrame();
 
     }
 }
