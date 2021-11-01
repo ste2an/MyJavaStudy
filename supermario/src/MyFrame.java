@@ -5,16 +5,22 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFrame extends JFrame implements KeyListener {
+public class MyFrame extends JFrame implements KeyListener, Runnable{
 
     // store all the bg-img of the game
     private List<BackGround> allBg = new ArrayList<>();
+
 
     // current bg-img
     private BackGround curBg = new BackGround();
 
     //？设置双缓存
     private Image offScreenImage = null;
+
+    private Mario mario = new Mario();
+
+    //
+    private Thread thread = new Thread(this);
 
     public MyFrame(){
         //set the size of window
@@ -42,6 +48,8 @@ public class MyFrame extends JFrame implements KeyListener {
         // load all the images we need
         StaticValue.init();
 
+        mario = new Mario(10, 395);
+
         //build bg-img of all sections
         for (int i = 1; i <= 3; i ++){
             allBg.add(new BackGround(i, i == 3));
@@ -50,9 +58,11 @@ public class MyFrame extends JFrame implements KeyListener {
         // 空参构造初始化游戏，第一个因此背景设置为第一个场景
         curBg = allBg.get(0);
 
+        mario.setBackGround(curBg);
         //绘制图像
         repaint();
 
+        thread.start();
     }// end of the constructor
 
     @Override
@@ -72,6 +82,15 @@ public class MyFrame extends JFrame implements KeyListener {
 
         }
 
+        //绘制城堡
+        graphics.drawImage(curBg.getCastle(), 620, 270, this);
+
+        //绘制旗杆
+        graphics.drawImage(curBg.getFlagpole(), 500, 220, this);
+
+        //绘制 mario
+        graphics.drawImage(mario.getShow(), mario.getX(), mario.getY(), this);
+
         // 将图像绘制到背景中
         g.drawImage(offScreenImage, 0, 0,this);
 
@@ -84,11 +103,28 @@ public class MyFrame extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        // move towards right, 39 refers 键盘上的 向下 按钮
+        if(e.getKeyCode() == 39){
+            mario.rightMove();
+        }
 
+        if(e.getKeyCode() == 37){
+            mario.leftMove();
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        // 松开键盘的时候
+        // 如果松开的键盘代码是 37
+        if(e.getKeyCode() == 37){
+            mario.leftStop();
+        }
+
+        // 如果松开的键盘代码是 39
+        if(e.getKeyCode() == 39){
+            mario.rightStop();
+        }
 
     }
 
@@ -97,4 +133,26 @@ public class MyFrame extends JFrame implements KeyListener {
         MyFrame myFrame = new MyFrame();
 
     }
-}
+
+    @Override
+    public void run() {
+        while(true){
+            repaint();
+            try {
+                Thread.sleep(50);
+
+                //切换场景
+                if(mario.getX() >= 775){
+                    curBg = allBg.get(curBg.getSort());
+                    mario.setBackGround(curBg);
+                    mario.setX(10);
+                    mario.setY(395);
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }// end of while
+    }// end of run method
+
+}// end of the class

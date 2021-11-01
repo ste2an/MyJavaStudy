@@ -11,21 +11,24 @@ public class BackGround {
     private int sort;
 
     // whether this section is the last one
-    private boolean flagpole;
-
-
+    private boolean flag;
 
     // to set obstacles in current background
     private List<Obstacle> obstaclesList = new ArrayList<>();
 
+
+
+    private BufferedImage flagpole;
+    private BufferedImage castle;
+
     public BackGround() {
     }
 
-    public BackGround(int sort, boolean flagpole) {
+    public BackGround(int sort, boolean flag) {
         this.sort = sort;
-        this.flagpole = flagpole;
+        this.flag = flag;
 
-        if(flagpole){
+        if(flag){
             bgImg = StaticValue.bg2;
         }else{
             bgImg = StaticValue.bg;
@@ -74,8 +77,7 @@ public class BackGround {
                     obstaclesList.add(new Obstacle(645, i, 6, this));
                 }
             }
-
-        }// end of the painting of section 1
+        }// end of the preparing of section 1
 
         if(sort == 2){
             // 绘制第一层地面(表面带草地的那种），图片长度30，窗口800，30 * 27 = 810
@@ -137,8 +139,46 @@ public class BackGround {
             for(int i = 360; i <= 540; i += 60){
                 obstaclesList.add(new Obstacle(i, 270, 7, this));
             }
+        }// end of the preparing of section 2
 
-        }// end of the painting of section 2
+        if(sort == 3){
+            // 绘制第一层地面(表面带草地的那种），图片长度30，窗口800，30 * 27 = 810
+            for(int i = 0; i < 27; i ++){
+                obstaclesList.add(new Obstacle(i * 30, 420,1,this));
+            }
+
+            //绘制地下部分
+            for(int j = 0; j <= 120;j += 30){
+                // row
+                for(int i = 0; i < 27; i ++){
+                    // col
+                    obstaclesList.add(new Obstacle(i * 30, 570 - j, 2, this));
+                }
+            }
+
+            //brick 绘制三角形阶梯
+            int temp = 290;
+            for(int i = 390; i >= 270; i -= 30){
+                for(int j = temp; j <= 410; j += 30){
+                    obstaclesList.add(new Obstacle(j, i , 7, this));
+                }
+                temp += 30;
+            }
+
+            temp = 60;
+            for(int i = 390; i >= 360; i -= 30){
+                for(int j = temp;j <= 90; j += 30){
+                    obstaclesList.add(new Obstacle(j,i,7,this));
+                }
+                temp += 30;
+            }
+
+            flagpole = StaticValue.flagpole;
+            castle = StaticValue.castle;
+
+            obstaclesList.add(new Obstacle(515, 220, 8, this));
+            
+        }// end of the preparing of section 3
 
     }// end of the constructor
 
@@ -151,10 +191,18 @@ public class BackGround {
     }
 
     public boolean isFlagpole() {
-        return flagpole;
+        return flag;
     }
 
     public List<Obstacle> getObstaclesList() {
         return obstaclesList;
+    }
+
+    public BufferedImage getFlagpole() {
+        return flagpole;
+    }
+
+    public BufferedImage getCastle() {
+        return castle;
     }
 }
