@@ -16,7 +16,10 @@ public class BackGround {
     // to set obstacles in current background
     private List<Obstacle> obstaclesList = new ArrayList<>();
 
-
+    // mario是否到达旗杆
+    private boolean isReach = false;
+    // 判断旗子是否落地
+    private boolean isBase = false;
 
     private BufferedImage flagpole;
     private BufferedImage castle;
@@ -105,6 +108,7 @@ public class BackGround {
                 }
             }
 
+            // 绘制第二根水管
             for(int i = 330; i <= 600; i += 25) {
                 if (i == 330) {
                     obstaclesList.add(new Obstacle(620, i, 3, this));
@@ -115,7 +119,7 @@ public class BackGround {
                 }
             }
 
-            // brisks
+            // brisks，三角形砖块
             obstaclesList.add(new Obstacle(300, 330, 0, this));
 
             for(int i = 270; i <= 330; i += 30){
@@ -126,6 +130,7 @@ public class BackGround {
                 }
             }
 
+            // 三角形最底下一层砖块
             for(int i = 240; i <= 360; i += 30){
                 if(i == 240 || i == 360){
                     obstaclesList.add(new Obstacle(i, 390, 0, this));
@@ -204,5 +209,21 @@ public class BackGround {
 
     public BufferedImage getCastle() {
         return castle;
+    }
+
+    public boolean isReach() {
+        return isReach;
+    }
+
+    public void setReach(boolean reach) {
+        isReach = reach;
+    }
+
+    public boolean isBase() {
+        return isBase;
+    }
+
+    public void setBase(boolean base) {
+        isBase = base;
     }
 }

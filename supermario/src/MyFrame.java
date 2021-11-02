@@ -48,7 +48,7 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
         // load all the images we need
         StaticValue.init();
 
-        mario = new Mario(10, 395);
+        mario = new Mario(10, 355);
 
         //build bg-img of all sections
         for (int i = 1; i <= 3; i ++){
@@ -103,13 +103,18 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // move towards right, 39 refers 键盘上的 向下 按钮
+        // move towards right, 39 refers 键盘上的 向右 按钮
         if(e.getKeyCode() == 39){
             mario.rightMove();
         }
 
+        //向左移动
         if(e.getKeyCode() == 37){
             mario.leftMove();
+        }
+
+        if(e.getKeyCode() == 38){
+            mario.jump();
         }
     }
 
@@ -146,7 +151,13 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
                     curBg = allBg.get(curBg.getSort());
                     mario.setBackGround(curBg);
                     mario.setX(10);
-                    mario.setY(395);
+                    mario.setY(355);
+                }
+
+                if(mario.isReachCastle()){
+                    // 游戏结束
+                    JOptionPane.showMessageDialog(this, "congrats");
+                    System.exit(0);
                 }
 
             } catch (InterruptedException e) {

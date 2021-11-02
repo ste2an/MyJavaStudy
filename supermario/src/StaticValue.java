@@ -101,7 +101,7 @@ public class StaticValue {
         }
 
         try {
-            obstacles.add(ImageIO.read(new File(path + "pointBrick.png")));
+            obstacles.add(ImageIO.read(new File(path + "brick2.png")));
             obstacles.add(ImageIO.read(new File(path + "flag.png")));
         } catch (IOException e) {
             e.printStackTrace();
