@@ -1,7 +1,10 @@
+import javazoom.jl.decoder.JavaLayerException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +63,15 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
         mario.setBackGround(curBg);
         //绘制图像
         repaint();
-
         thread.start();
+
+        try {
+            new Music();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (JavaLayerException e) {
+            e.printStackTrace();
+        }
     }// end of the constructor
 
     @Override
