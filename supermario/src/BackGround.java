@@ -16,6 +16,10 @@ public class BackGround {
     // to set obstacles in current background
     private List<Obstacle> obstaclesList = new ArrayList<>();
 
+
+
+    private List<Enemy> enemies = new ArrayList<>();
+
     // mario是否到达旗杆
     private boolean isReach = false;
     // 判断旗子是否落地
@@ -80,6 +84,11 @@ public class BackGround {
                     obstaclesList.add(new Obstacle(645, i, 6, this));
                 }
             }
+
+            // enemy in section1
+            enemies.add(new Enemy(580, 385, 1, true, this));
+            enemies.add(new Enemy(635, 420, 2,true,this,328,428));
+
         }// end of the preparing of section 1
 
         if(sort == 2){
@@ -144,6 +153,14 @@ public class BackGround {
             for(int i = 360; i <= 540; i += 60){
                 obstaclesList.add(new Obstacle(i, 270, 7, this));
             }
+
+            // enemy in section2
+            enemies.add(new Enemy(75, 420, 2,true,this,328,428));
+            enemies.add(new Enemy(635, 420, 2,true,this,328,428));
+
+            enemies.add(new Enemy(250, 385, 1, true, this));
+            enemies.add(new Enemy(500, 385, 1, true, this));
+
         }// end of the preparing of section 2
 
         if(sort == 3){
@@ -182,6 +199,9 @@ public class BackGround {
             castle = StaticValue.castle;
 
             obstaclesList.add(new Obstacle(515, 220, 8, this));
+
+            //enemy
+            enemies.add(new Enemy(150, 385, 1, true, this));
             
         }// end of the preparing of section 3
 
@@ -225,5 +245,9 @@ public class BackGround {
 
     public void setBase(boolean base) {
         isBase = base;
+    }
+
+    public List<Enemy> getEnemies() {
+        return enemies;
     }
 }

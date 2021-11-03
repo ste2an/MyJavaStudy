@@ -40,6 +40,8 @@ public class Mario implements Runnable {
 
         this.status = "stand--right";
         thread = new Thread(this);
+        // 传入了mario类，mario类继承了 runnable类，是一个自定义线程对象，在新建mario类的时候会实现线程
+
         thread.start();
     }
 

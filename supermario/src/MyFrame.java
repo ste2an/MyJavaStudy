@@ -10,7 +10,6 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
     // store all the bg-img of the game
     private List<BackGround> allBg = new ArrayList<>();
 
-
     // current bg-img
     private BackGround curBg = new BackGround();
 
@@ -75,6 +74,12 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
 
         // 绘制背景
         graphics.drawImage(curBg.getBgImg(), 0,0,this);
+
+        //绘制敌人
+        for(Enemy e: curBg.getEnemies()){
+            graphics.drawImage(e.getShow(),e.getX(),e.getY(),this);
+        }
+        // 注意绘制顺序，先绘制的东西会被后覆盖的遮住
 
         // 绘制障碍物
         for(Obstacle ob: curBg.getObstaclesList()){
