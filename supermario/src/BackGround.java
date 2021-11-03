@@ -16,8 +16,6 @@ public class BackGround {
     // to set obstacles in current background
     private List<Obstacle> obstaclesList = new ArrayList<>();
 
-
-
     private List<Enemy> enemies = new ArrayList<>();
 
     // mario是否到达旗杆
