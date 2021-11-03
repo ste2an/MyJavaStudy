@@ -9,7 +9,7 @@ public class Music {
 
     public Music() throws FileNotFoundException, JavaLayerException {
         Player player;
-        String str = System.getProperty("user.dir") + "/supermario/src/music.wav";
+        String str = System.getProperty("user.dir") + "/supermario/src/music/music.wav";
 
         // FileNotFoundException
         BufferedInputStream name = new BufferedInputStream(new FileInputStream(str));
