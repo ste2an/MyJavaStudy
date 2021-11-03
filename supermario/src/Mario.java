@@ -32,6 +32,9 @@ public class Mario implements Runnable {
     //判断mario是否死亡
     private boolean isDeath = false;
 
+    // points
+    private int score = 0;
+
     public Mario() {
     }
 
@@ -189,6 +192,7 @@ public class Mario implements Runnable {
                         //判断顶到的砖块类型
                         if (ob.getType() == 0) {
                             backGround.getObstaclesList().remove(ob);
+                            score ++;
                         }
                         // once mario break a brick, immediately fall
                         upTime = 0;
@@ -213,6 +217,7 @@ public class Mario implements Runnable {
                         if(e.getType() == 1){
                             // step on the mushroom
                             e.death();
+                            score += 2;
                             upTime = 3;
                             ySpeed = -10;
                         }else if(e.getType() == 2){
@@ -343,4 +348,10 @@ public class Mario implements Runnable {
     public boolean isDeath() {
         return isDeath;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+
 }// end of the class
