@@ -3,7 +3,6 @@ import java.awt.image.BufferedImage;
 public class Enemy implements Runnable {
     // coordinate
     private int x, y;
-
     // the type of enemy : mushroom , flower ...
     private int type;
     // 1 -- mushroom
@@ -57,7 +56,7 @@ public class Enemy implements Runnable {
     public void death() {
         show = StaticValue.mushrooms.get(2);
         // 如果敌人死亡，把敌人从当前bg中移除
-        this.bg.getObstaclesList().remove(this);
+        this.bg.getEnemies().remove(this);
     }
 
     @Override
@@ -145,4 +144,9 @@ public class Enemy implements Runnable {
     public BufferedImage getShow() {
         return show;
     }
+
+    public int getType() {
+        return type;
+    }
+
 }// end of the class
