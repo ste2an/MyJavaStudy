@@ -29,6 +29,9 @@ public class Mario implements Runnable {
     // 判断mario是否走到城堡门口
     private boolean reachCastle;
 
+    //判断mario是否死亡
+    private boolean isDeath = false;
+
     public Mario() {
     }
 
@@ -128,6 +131,10 @@ public class Mario implements Runnable {
         ySpeed = 10;
     }
 
+    public void death(){
+        isDeath = true;
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -191,13 +198,36 @@ public class Mario implements Runnable {
                     if (ob.getX() == this.x + 25 && (ob.getY() > this.y - 30 && ob.getY() < this.y + 25)) {
                         canRight = false;
                     }
-
                     //左侧是否有障碍物
                     if (ob.getX() == this.x - 30 && (ob.getY() > this.y - 30 && ob.getY() < this.y + 25)) {
                         canLeft = false;
                     }
-
                 } // end of collision verify
+
+                // whether mario kills or mario dies
+                for(int i = 0; i < backGround.getEnemies().size(); i ++){
+                    Enemy e = backGround.getEnemies().get(i);
+
+                    // 判断mario是否在敌人正上方
+                    if(e.getY() == this.y + 20 && (e.getX() - 25 <= this.x && e.getX() + 35 >= this.x)){
+                        if(e.getType() == 1){
+                            // step on the mushroom
+                            e.death();
+                            upTime = 3;
+                            ySpeed = -10;
+                        }else if(e.getType() == 2){
+                            // mario dies
+                            death();
+
+                        }
+                    }
+
+                    if((e.getX() + 35 > this.x && e.getX() - 25 < this.x) &&
+                            (e.getY() + 35 > this.y && e.getY() - 20 < this.y)){
+                        // mario dies
+                        death();
+                    }
+                }
 
                 // mario jump
                 if (onObstacle && upTime == 0) {
@@ -308,5 +338,9 @@ public class Mario implements Runnable {
 
     public boolean isReachCastle() {
         return reachCastle;
+    }
+
+    public boolean isDeath() {
+        return isDeath;
     }
 }// end of the class
