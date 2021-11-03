@@ -96,7 +96,14 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
         //绘制 mario
         graphics.drawImage(mario.getShow(), mario.getX(), mario.getY(), this);
 
-        // 将图像绘制到背景中
+        //添加分数
+        Color c = graphics.getColor();
+        graphics.setColor(Color.BLACK);
+        graphics.setFont(new Font(Font.SERIF,Font.BOLD, 25));
+        graphics.drawString("Your score is : " + mario.getScore(), 300, 100);
+        graphics.setColor(c); // 还原画笔颜色
+
+        // 将所有图像绘制到背景中
         g.drawImage(offScreenImage, 0, 0,this);
 
     }// end of the paint method
