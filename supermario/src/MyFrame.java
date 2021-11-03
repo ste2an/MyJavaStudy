@@ -159,6 +159,11 @@ public class MyFrame extends JFrame implements KeyListener, Runnable{
                     mario.setY(355);
                 }
 
+                //判断mario是否死亡
+                if(mario.isDeath() == true){
+                    JOptionPane.showMessageDialog(this, "mario dies!");
+                    System.exit(0);
+                }
                 if(mario.isReachCastle()){
                     // 游戏结束
                     JOptionPane.showMessageDialog(this, "congrats");
