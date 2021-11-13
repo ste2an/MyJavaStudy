@@ -5,6 +5,7 @@
 ![background eg 1](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg1.png)
 ![background eg 2](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg2.png)
 
+![game eg](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/finished.gif)
 ## Nodes:
 Swing  实现基本窗体与部分组件，
 双缓冲解决卡帧现象，
