@@ -2,8 +2,10 @@
 
 ## Introductions:
 1. background
-![background eg 1](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg1.png | width=200)
-![background eg 2](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg2.png | width=200)
+
+<img src="https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg1.png" width="300">
+![background eg 1](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg1.png)
+![background eg 2](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg2.png)
 
 ![game eg](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/finished.gif)
 ## Nodes:
