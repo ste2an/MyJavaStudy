@@ -1,14 +1,15 @@
 # MyJavaStudy
-# <ul> SuperMario with Java Swing </ul>
+    <br>
+# SuperMario with Java Swing
 
 ![game eg](https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/finished.gif)
 
 ## Introductions:
 <li> background </li>
-background of section 1
+1. background of section 1
 <img src="https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg1.png" width="300">
-<br>
-background of section 1
+    <br>
+2. background of section 2
 <img src="https://github.com/ste2an/MyJavaStudy/blob/main/supermario/src/intro/bg2.png" width="300">
 
 
